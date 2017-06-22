@@ -10,5 +10,10 @@
   "autoload": {
     "psr-4": {"Salmon\\Migration\\": ["src/Migration"]},
     "files": ["registration.php"]
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2.2.x-dev"
+    }
   }
 }

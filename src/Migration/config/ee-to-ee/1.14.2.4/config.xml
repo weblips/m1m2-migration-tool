@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+        xs:noNamespaceSchemaLocation="../../../../../../../vendor/magento/data-migration-tool/etc/config.xsd">
+    <steps mode="settings">
+        <step title="Settings Step">
+            <integrity>Migration\Step\Settings\Integrity</integrity>
+            <data>Migration\Step\Settings\Data</data>
+        </step>
+        <step title="Stores Step">
+            <integrity>Migration\Step\Stores\Integrity</integrity>
+            <data>Migration\Step\Stores\Data</data>
+            <volume>Migration\Step\Stores\Volume</volume>
+        </step>
+    </steps>
+    <steps mode="data">
+        <step title="Salmon - Clean Destination Database Step">
+            <integrity>Salmon\Migration\Step\DataIntegrity\CleanDestination</integrity>
+        </step>
+        <step title="Salmon - Clean Source Database Step">
+            <integrity>Salmon\Migration\Step\DataIntegrity\CleanSource</integrity>
+        </step>
+        <step title="Salmon - Export Custom Documents/Fields From Source Data Step">
+            <integrity>Salmon\Migration\Step\DataIntegrity\ExportCustomSourceDefinitions</integrity>
+        </step>
+        <step title="Data Integrity Step">
+            <data>Migration\Step\DataIntegrity\Integrity</data>
+        </step>
+        <step title="EAV Step">
+            <integrity>Migration\Step\Eav\Integrity</integrity>
+            <data>Migration\Step\Eav\Data</data>
+            <volume>Migration\Step\Eav\Volume</volume>
+        </step>
+        <step title="Custom Customer Attributes Step">
+            <integrity>Migration\Step\CustomCustomerAttributes\Integrity</integrity>
+            <data>Migration\Step\CustomCustomerAttributes\Data</data>
+            <volume>Migration\Step\CustomCustomerAttributes\Volume</volume>
+        </step>
+        <step title="Customer Attributes Step">
+            <integrity>Migration\Step\Customer\Integrity</integrity>
+            <data>Migration\Step\Customer\Data</data>
+            <volume>Migration\Step\Customer\Volume</volume>
+        </step>
+        <step title="Map Step">
+            <integrity>Migration\Step\Map\Integrity</integrity>
+            <data>Migration\Step\Map\Data</data>
+            <volume>Migration\Step\Map\Volume</volume>
+        </step>
+        <step title="Url Rewrite Step">
+            <integrity>Migration\Step\UrlRewrite\Version11410to2000</integrity>
+            <data>Migration\Step\UrlRewrite\Version11410to2000</data>
+            <volume>Migration\Step\UrlRewrite\Version11410to2000</volume>
+        </step>
+        <step title="Log Step">
+            <integrity>Migration\Step\Log\Integrity</integrity>
+            <data>Migration\Step\Log\Data</data>
+            <volume>Migration\Step\Log\Volume</volume>
+        </step>
+        <step title="Ratings Step">
+            <integrity>Migration\Step\Ratings\Integrity</integrity>
+            <data>Migration\Step\Ratings\Data</data>
+            <volume>Migration\Step\Ratings\Volume</volume>
+        </step>
+        <step title="SalesOrder Step">
+            <integrity>Migration\Step\SalesOrder\Integrity</integrity>
+            <data>Migration\Step\SalesOrder\Data</data>
+            <volume>Migration\Step\SalesOrder\Volume</volume>
+        </step>
+        <step title="ConfigurablePrices step">
+            <integrity>Migration\Step\ConfigurablePrices\Integrity</integrity>
+            <data>Migration\Step\ConfigurablePrices\Data</data>
+            <volume>Migration\Step\ConfigurablePrices\Volume</volume>
+        </step>
+        <step title="OrderGrids Step">
+            <integrity>Migration\Step\OrderGridsEE\Integrity</integrity>
+            <data>Migration\Step\OrderGridsEE\Data</data>
+            <volume>Migration\Step\OrderGridsEE\Volume</volume>
+        </step>
+        <step title="Tier Price Step">
+            <integrity>Migration\Step\TierPrice\Integrity</integrity>
+            <data>Migration\Step\TierPrice\Data</data>
+            <volume>Migration\Step\TierPrice\Volume</volume>
+        </step>
+        <step title="SalesIncrement Step">
+            <integrity>Migration\Step\SalesIncrement\Integrity</integrity>
+            <data>Migration\Step\SalesIncrement\Data</data>
+            <volume>Migration\Step\SalesIncrement\Volume</volume>
+        </step>
+        <step title="VisualMerchandiser Step">
+            <integrity>Migration\Step\VisualMerchandiser\Integrity</integrity>
+            <data>Migration\Step\VisualMerchandiser\Data</data>
+            <volume>Migration\Step\VisualMerchandiser\Volume</volume>
+        </step>
+        <step title="PostProcessing Step">
+            <data>Migration\Step\PostProcessing\Data</data>
+        </step>
+    </steps>
+    <steps mode="delta">
+        <step title="Custom Customer Attributes Step">
+            <delta>Migration\Step\CustomCustomerAttributes\Delta</delta>
+            <volume>Migration\Step\CustomCustomerAttributes\Volume</volume>
+        </step>
+        <step title="Customer Attributes Step">
+            <delta>Migration\Step\Customer\Delta</delta>
+            <volume>Migration\Step\Customer\Volume</volume>
+        </step>
+        <step title="Map Step">
+            <delta>Migration\Step\Map\Delta</delta>
+        </step>
+        <step title="Log Step">
+            <delta>Migration\Step\Log\Delta</delta>
+            <volume>Migration\Step\Log\Volume</volume>
+        </step>
+        <step title="SalesOrder Step">
+            <delta>Migration\Step\SalesOrder\Delta</delta>
+            <volume>Migration\Step\SalesOrder\Volume</volume>
+        </step>
+        <step title="OrderGrids Step">
+            <delta>Migration\Step\OrderGridsEE\Delta</delta>
+            <volume>Migration\Step\OrderGridsEE\Volume</volume>
+        </step>
+        <step title="SalesIncrement Step">
+            <delta>Migration\Step\SalesIncrement\Delta</delta>
+            <volume>Migration\Step\SalesIncrement\Volume</volume>
+        </step>
+    </steps>
+    <source>
+        <database host="127.0.0.1" name="magento" user="mag2user" password="pa55word"/>
+    </source>
+    <destination>
+        <database host="127.0.0.1" name="magento2" user="mag2user" password="pa55word"/>
+    </destination>
+    <options>
+        <resource_adapter_class_name>Salmon\Migration\ResourceModel\Adapter\Mysql</resource_adapter_class_name>
+        <salmon_config_file>config/ee-to-ee/salmon-config.xml</salmon_config_file>
+        <map_file>../../../app/code/Salmon/Migration/config/ee-to-ee/1.14.2.4/map.xml</map_file>
+        <eav_map_file>../../../app/code/Salmon/Migration/config/ee-to-ee/map-eav.xml</eav_map_file>
+        <eav_document_groups_file>../../../app/code/Salmon/Migration/config/ee-to-ee/eav-document-groups.xml</eav_document_groups_file>
+        <eav_attribute_groups_file>../../../app/code/Salmon/Migration/config/ee-to-ee/eav-attribute-groups.xml</eav_attribute_groups_file>
+        <log_map_file>../../../app/code/Salmon/Migration/config/ee-to-ee/map-log.xml</log_map_file>
+        <log_document_groups_file>../../../app/code/Salmon/Migration/config/ee-to-ee/log-document-groups.xml</log_document_groups_file>
+        <settings_map_file>../../../app/code/Salmon/Migration/config/ee-to-ee/settings.xml</settings_map_file>
+        <customer_map_file>../../../app/code/Salmon/Migration/config/ee-to-ee/map-customer.xml</customer_map_file>
+        <customer_document_groups_file>../../../app/code/Salmon/Migration/config/ee-to-ee/customer-document-groups.xml</customer_document_groups_file>
+        <customer_attribute_groups_file>../../../app/code/Salmon/Migration/config/ee-to-ee/customer-attribute-groups.xml</customer_attribute_groups_file>
+        <sales_order_map_file>../../../app/code/Salmon/Migration/config/ee-to-ee/map-sales.xml</sales_order_map_file>
+        <delta_document_groups_file>../../../app/code/Salmon/Migration/config/ee-to-ee/deltalog.xml</delta_document_groups_file>
+        <customer_attr_map_file>../../../app/code/Salmon/Migration/config/ee-to-ee/customer-attr-map.xml</customer_attr_map_file>
+        <customer_attr_document_groups_file>../../../app/code/Salmon/Migration/config/ee-to-ee/customer-attr-document-groups.xml</customer_attr_document_groups_file>
+        <order_grids_document_groups_file>../../../app/code/Salmon/Migration/config/ee-to-ee/order-grids-document-groups.xml</order_grids_document_groups_file>
+        <class_map>../../../app/code/Salmon/Migration/config/ee-to-ee/class-map.xml</class_map>
+        <visual_merchandiser_map>../../../app/code/Salmon/Migration/config/ee-to-ee/visual_merchandiser_map.xml</visual_merchandiser_map>
+        <visual_merchandiser_document_groups>../../../app/code/Salmon/Migration/config/ee-to-ee/visual_merchandiser_document_groups.xml</visual_merchandiser_document_groups>
+        <visual_merchandiser_attribute_groups>../../../app/code/Salmon/Migration/config/ee-to-ee/visual_merchandiser_attribute_groups.xml</visual_merchandiser_attribute_groups>
+        <map_document_groups>../../../app/code/Salmon/Migration/config/ee-to-ee/map-document-groups.xml</map_document_groups>
+        <tier_price_map_file>../../../app/code/Salmon/Migration/config/ee-to-ee/map-tier-price.xml</tier_price_map_file>
+        <!--
+        In case bulk_size=0 it will be auto-detected for every document.
+        -->
+        <bulk_size>0</bulk_size>
+        <!--
+        Set direct_document_copy = 1 for better performance.
+        NOTE: 'source' and 'destination' databases MUST be placed on the same MySQL instance
+        and 'destination' user MUST be granted with 'SELECT' permissions on 'source' database
+         -->
+        <direct_document_copy>1</direct_document_copy>
+        <source_prefix />
+        <dest_prefix />
+        <auto_resolve_urlrewrite_duplicates>1</auto_resolve_urlrewrite_duplicates>
+        <log_file>migration.log</log_file>
+        <progress_bar_format>%percent%% [%bar%] Remaining Time: %remaining%</progress_bar_format>
+        <upgrade_customer_password_hash>1</upgrade_customer_password_hash>
+        <edition_migrate>ee-to-ee</edition_migrate>
+        <edition_number>1.14.2.4</edition_number>
+        <init_statements_source>SET NAMES utf8;</init_statements_source>
+        <init_statements_destination>SET NAMES utf8;</init_statements_destination>
+        <crypt_key>1f8eee87a3f1890dc69160c1d4517427</crypt_key>
+    </options>
+</config>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<salmon_config xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+               xs:noNamespaceSchemaLocation="../../etc/salmon-config.xsd">
+    <source>
+        <document_rules>
+            <clean_orphans>
+                <document>catalog_eav_attribute</document>
+                <document>catalog_product_entity_int</document>
+                <document>catalog_product_entity_varchar</document>
+                <document>customer_eav_attribute</document>
+                <document>customer_entity_int</document>
+                <document>eav_attribute_group</document>
+                <document>eav_attribute_option</document>
+                <document>eav_attribute_option_value</document>
+                <document>eav_entity_attribute</document>
+
+                <document>core_layout_link</document>
+                <document>customer_address_entity_varchar</document>
+                <document>customer_form_attribute</document>
+                <document>dataflow_profile_history</document>
+                <document>widget_instance_page</document>
+                <document>widget_instance_page_layout</document>
+            </clean_orphans>
+        </document_rules>
+        <field_rules>
+            <export>
+                <field>catalog_eav_attribute.can_configure_inheritance</field>
+                <to>catalog_eav_attribute.can_configure_inheritance</to>
+            </export>
+            <export>
+                <field>catalog_eav_attribute.inheritance</field>
+                <to>catalog_eav_attribute.inheritance</to>
+            </export>
+            <export>
+                <field>catalog_eav_attribute.can_configure_import</field>
+                <to>catalog_eav_attribute.can_configure_import</to>
+            </export>
+            <export>
+                <field>catalog_eav_attribute.import_to_dfw</field>
+                <to>catalog_eav_attribute.import_to_dfw</to>
+            </export>
+        </field_rules>
+    </source>
+</salmon_config>

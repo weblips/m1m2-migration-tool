@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="salmon_config" type="salmonConfigType" />
+
+    <xs:complexType name="salmonConfigType">
+        <xs:sequence>
+            <xs:element name="source" type="sourceRulesType" maxOccurs="1" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="sourceRulesType">
+        <xs:sequence>
+            <xs:element name="document_rules" type="sourceDocumentRulesType" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="field_rules" type="sourceFieldRulesType" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="sourceDocumentRulesType">
+        <xs:sequence>
+            <xs:element name="clean_orphans" type="cleanDocumentOrphansType" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="export" type="exportDocumentType" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="cleanDocumentOrphansType">
+        <xs:sequence>
+            <xs:element name="document" type="notEmptyString" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="exportDocumentType">
+        <xs:sequence>
+            <xs:element name="document" type="notEmptyString" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="sourceFieldRulesType">
+        <xs:sequence>
+            <xs:element name="export" type="exportFieldType" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="exportFieldType">
+        <xs:sequence>
+            <xs:element name="field" type="fieldFormatType"/>
+            <xs:element name="to" type="fieldFormatType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="fieldFormatType">
+        <xs:annotation>
+            <xs:documentation>Field format: "document_name.field_name"</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^.]+\.[^.]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="notEmptyString">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

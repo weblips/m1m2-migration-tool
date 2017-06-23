@@ -3,7 +3,7 @@
   "description": "M1 to M2 Salmon Migration Tool",
   "type": "magento2-module",
   "version": "1.5.1",
-  "license": ["BSD-3-Clause"],
+  "license": ["proprietary"],
   "require": {
     "magento/data-migration-tool": "2.1.5"
   },

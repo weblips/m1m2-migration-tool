@@ -2,16 +2,16 @@
   "name": "salmon/module-migration-tool",
   "description": "M1 to M2 Salmon Migration Tool",
   "type": "magento2-module",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "license": ["proprietary"],
-  "require": {
-    "magento/data-migration-tool": "2.1.5"
-  },
-  "repositoriesd": {
+  "repositories": {
     "magento": {
       "type": "composer",
       "url": "https://repo.magento.com"
     }
+  },
+  "require": {
+    "magento/data-migration-tool": "2.1.5"
   },
   "autoload": {
     "psr-4": {"Salmon\\Migration\\": ["src/Migration"]},
